@@ -16,6 +16,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs =
+                [
+                    'src/main/res/layouts/starting_activity',
+                    'src/main/res/layouts/words_to_memorize',
+                    'src/main/res/layouts',
+                    'src/main/res'
+                ]
+        }
+    }
 }
 
 dependencies {
