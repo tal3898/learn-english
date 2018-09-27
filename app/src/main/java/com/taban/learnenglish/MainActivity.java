@@ -1,7 +1,10 @@
 package com.taban.learnenglish;
 
+import android.content.Intent;
+import android.provider.UserDictionary;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeToLearningLayout(View view) {
-        setContentView(R.layout.words_to_memorize);
+        Intent wordsToMemorizeActivityIntent = new Intent(this, WordsToMemorizeActivity.class);
+        startActivity(wordsToMemorizeActivityIntent);
     }
 }

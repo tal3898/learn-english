@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LearnEnglish</string>
+    <string name="title_activity_words_to_memorize">Your Words</string>
 </resources>
