@@ -22,6 +22,7 @@
         android:id="@+id/startLearnBtn"
         android:layout_width="233dp"
         android:layout_height="wrap_content"
+        android:onClick="changeToLearningLayout"
         android:text="Start Learn English"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
