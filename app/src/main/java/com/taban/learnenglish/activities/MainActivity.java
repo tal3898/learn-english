@@ -1,11 +1,11 @@
-package com.taban.learnenglish;
+package com.taban.learnenglish.activities;
 
 import android.content.Intent;
-import android.provider.UserDictionary;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
+
+import com.taban.learnenglish.R;
 
 public class MainActivity extends AppCompatActivity {
 
