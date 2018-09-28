@@ -1,4 +1,4 @@
-package com.taban.learnenglish.activities;
+package com.taban.learnenglish.adpters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

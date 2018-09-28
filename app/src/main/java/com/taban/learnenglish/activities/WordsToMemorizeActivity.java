@@ -1,17 +1,14 @@
 package com.taban.learnenglish.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.taban.learnenglish.R;
+import com.taban.learnenglish.adpters.WordsListAdapter;
 import com.taban.learnenglish.utilities.WordsManager;
 
 public class WordsToMemorizeActivity extends AppCompatActivity {
