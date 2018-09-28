@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".activities.WordsToMemorizeActivity">
 
-    <include layout="@layout/word_to_memorize_tool_bar"/>
+        <include layout="@layout/word_to_memorize_tool_bar"/>
 
-    <include layout="@layout/word_to_memorize_content"/>
+
+        <include layout="@layout/word_to_memorize_content" />
 
 
 </android.support.design.widget.CoordinatorLayout>

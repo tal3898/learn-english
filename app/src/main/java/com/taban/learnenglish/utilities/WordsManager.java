@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WordsManager {
-    private List<Word> newWordsToMemorize;
+    public List<Word> newWordsToMemorize;
 
     public WordsManager() {
         this.newWordsToMemorize = new ArrayList<>();
