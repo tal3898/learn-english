@@ -1,6 +1,8 @@
 package com.taban.learnenglish.activities;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -16,6 +18,7 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
     private ListView wordsListView;
     private WordsManager wordsManager;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

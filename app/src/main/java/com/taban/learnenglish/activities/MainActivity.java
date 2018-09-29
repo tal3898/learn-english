@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.taban.learnenglish.R;
+import com.taban.learnenglish.utilities.Globals;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Globals.initVariables(this);
     }
 
     public void changeToLearningLayout(View view) {
