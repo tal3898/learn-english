@@ -17,8 +17,6 @@ public class FileWriter {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void writeObjectIntoFile(Object writeableObject, String url) {
-
-
         String actualUrl = Globals.getFilesPath() + url;
 
         try(FileOutputStream fout = new FileOutputStream(actualUrl);
