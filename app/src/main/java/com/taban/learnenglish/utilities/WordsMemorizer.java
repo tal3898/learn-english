@@ -23,7 +23,6 @@ public class WordsMemorizer {
     // DM
     private List<Word> wordsToMemorize;
     private Word prevPlayedWord;
-    private WordsAudioManager wordsAudioManager;
     private Random random;
 
     private TextView wordTextView;
@@ -34,14 +33,12 @@ public class WordsMemorizer {
         this.wordsToMemorize = wordsToMemorize;
         this.wordTextView = wordTextView;
         this.definitionTextView = definitionTextView;
-
-        this.wordsAudioManager = new WordsAudioManager();
         this.random = new Random();
     }
 
     // Methods
     private void playAudioWord(Word wordToDisplay) {
-        MediaPlayer mediaPlayer = wordsAudioManager.getWordMediaPlayer(wordToDisplay);
+        MediaPlayer mediaPlayer = Globals.wordsAudioManager.getWordMediaPlayer(wordToDisplay);
 
         mediaPlayer.start();
     }
@@ -73,6 +70,6 @@ public class WordsMemorizer {
         // Display and play the word
         wordTextView.setText(randomWord.getWord());
         definitionTextView.setText(randomWord.getDefinition());
-        wordsAudioManager.getWordMediaPlayer(randomWord).start();
+        Globals.wordsAudioManager.getWordMediaPlayer(randomWord).start();
     }
 }
