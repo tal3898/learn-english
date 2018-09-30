@@ -19,12 +19,13 @@ android {
     sourceSets {
         main {
             res.srcDirs =
-                [
-                    'src/main/res/layouts/starting_activity',
-                    'src/main/res/layouts/words_to_memorize',
-                    'src/main/res/layouts',
-                    'src/main/res'
-                ]
+                    [
+                            'src/main/res/layouts/starting_activity',
+                            'src/main/res/layouts/words_to_memorize',
+                            'src/main/res/layouts/word_player',
+                            'src/main/res/layouts',
+                            'src/main/res'
+                    ]
         }
     }
 }
