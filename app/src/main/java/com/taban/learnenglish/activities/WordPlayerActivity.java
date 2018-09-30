@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.taban.learnenglish.R;
 import com.taban.learnenglish.models.Word;
+import com.taban.learnenglish.utilities.WordsAudioManager;
+import com.taban.learnenglish.utilities.WordsMemorizer;
 
 import org.w3c.dom.Text;
 
@@ -21,13 +23,13 @@ public class WordPlayerActivity extends AppCompatActivity {
     private static final int WORD_PLAY_INTERVAL = 4*1000;
     private static final int WORD_PLAY_DELAY = (int) (0.75*1000);
 
-    private Word prevPlayedWord;
+
     private List<Word> wordsToMemorize;
+    private WordsMemorizer wordsMemorizer;
 
     private TextView wordTextView;
     private TextView definitionTextView;
 
-    private Random random = new Random();
     TimerTask playerTask;
     Timer timer;
 
@@ -36,16 +38,17 @@ public class WordPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_player);
 
-        wordsToMemorize = (List<Word>) getIntent().getSerializableExtra("wordsToMemorize");
-
         // Init the textviews
         wordTextView = (TextView) findViewById(R.id.wordDisplay);
         definitionTextView = (TextView) findViewById(R.id.definitionDisplay);
         wordTextView.setText("");
         definitionTextView.setText("");
 
+        // Init variables
+        wordsToMemorize = (List<Word>) getIntent().getSerializableExtra("wordsToMemorize");
+        wordsMemorizer = new WordsMemorizer(wordTextView, definitionTextView, wordsToMemorize);
+
         // Start display the words randomly
-        prevPlayedWord = popRandomWord();
 
         playerTask = new TimerTask() {
             @Override
@@ -54,11 +57,7 @@ public class WordPlayerActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Word newWordDisplayed = getAndDisplayRandomWord();
-                        wordsToMemorize.add(prevPlayedWord);
-                        prevPlayedWord = newWordDisplayed;
-
-                        playAudioWord(newWordDisplayed);
+                        wordsMemorizer.displayAndPlayRandomWord();
                     }
                 });
 
@@ -76,31 +75,6 @@ public class WordPlayerActivity extends AppCompatActivity {
         timer.cancel();
     }
 
-    private void playAudioWord(Word newWordDisplayed) {
-        int resId = getResources().getIdentifier(newWordDisplayed.getWord(), "raw", getPackageName());
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, resId);
-        mediaPlayer.start();
-    }
 
-    private Word getRandomWord() {
-        int wordIndex = random.nextInt(wordsToMemorize.size());
-        Word randomWord = wordsToMemorize.get(wordIndex);
 
-        return randomWord;
-    }
-
-    private Word popRandomWord() {
-        Word randomWord = getRandomWord();
-        this.wordsToMemorize.remove(randomWord);
-
-        return randomWord;
-    }
-
-    private Word getAndDisplayRandomWord() {
-        Word randomWord = popRandomWord();
-        wordTextView.setText(randomWord.getWord());
-        definitionTextView.setText(randomWord.getDefinition());
-
-        return randomWord;
-    }
 }
