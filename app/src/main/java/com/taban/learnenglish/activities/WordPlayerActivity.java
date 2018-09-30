@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.taban.learnenglish.R;
@@ -59,10 +60,12 @@ public class WordPlayerActivity extends AppCompatActivity {
             }
 
         };
+    }
 
-        handler.postDelayed(wordsMemorizeRunnable, WORD_PLAY_DELAY);
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(wordsMemorizeRunnable);
     }
 
     @Override
@@ -71,6 +74,9 @@ public class WordPlayerActivity extends AppCompatActivity {
         handler.removeCallbacks(wordsMemorizeRunnable);
     }
 
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        handler.postDelayed(wordsMemorizeRunnable, WORD_PLAY_DELAY);
+    }
 }
