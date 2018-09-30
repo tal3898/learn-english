@@ -1,12 +1,14 @@
 package com.taban.learnenglish.activities;
 
-import android.media.MediaPlayer;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -14,10 +16,13 @@ import com.taban.learnenglish.R;
 import com.taban.learnenglish.adpters.WordsListAdapter;
 import com.taban.learnenglish.utilities.WordsManager;
 
+import java.io.Serializable;
+
 public class WordsToMemorizeActivity extends AppCompatActivity {
 
     private ListView wordsListView;
     private WordsManager wordsManager;
+    private FloatingActionButton wordPlayBtn;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -29,17 +34,26 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Define the list view and its values
         wordsManager = new WordsManager();
         wordsManager.loadAllWords();
 
-        String[] arr = {"tal", "ben"};
         ListAdapter wordsListAdapter = new WordsListAdapter(this,wordsManager.newWordsToMemorize);
 
         wordsListView = (ListView)findViewById(R.id.wordsListView);
         wordsListView.setAdapter(wordsListAdapter);
 
+        // Initi the floating button
+        wordPlayBtn = (FloatingActionButton) findViewById(R.id.words_play_btn);
+
         //MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.pardon);
         //mediaPlayer.start(); // no need to call prepare(); create() does that for you
+    }
+
+    public void playMyWords(View view) {
+        Intent wordsPlayerActivityIntent = new Intent(this, WordPlayerActivity.class);
+        wordsPlayerActivityIntent.putExtra("wordsToMemorize", (Serializable) wordsManager.getNewWordsToMemorize());
+        startActivity(wordsPlayerActivityIntent);
     }
 
     @Override

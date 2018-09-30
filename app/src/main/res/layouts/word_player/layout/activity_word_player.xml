@@ -4,6 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WordPlayerActivity">
+    tools:context=".activities.WordPlayerActivity">
 
+    <TextView
+        android:id="@+id/wordDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="obstruction"
+        android:textSize="45sp"
+        app:fontFamily="monospace"
+        app:layout_constraintBottom_toTopOf="@+id/definitionDisplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/definitionDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="חתוללללל"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wordDisplay" />
 </android.support.constraint.ConstraintLayout>

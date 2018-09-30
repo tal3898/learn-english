@@ -24,7 +24,7 @@
             android:name=".activities.WordsToMemorizeActivity"
             android:label="@string/title_activity_words_to_memorize"
             android:theme="@style/AppTheme" />
-        <activity android:name=".WordPlayerActivity"></activity>
+        <activity android:name=".activities.WordPlayerActivity"></activity>
     </application>
 
 </manifest>

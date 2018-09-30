@@ -29,6 +29,11 @@ public class WordsManager {
         this.deletedWords = new HashMap<>();
     }
 
+    // Access Methods
+    public List<Word> getNewWordsToMemorize() {
+        return this.newWordsToMemorize;
+    }
+
     // Methods
     @TargetApi(Build.VERSION_CODES.N)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
