@@ -1,12 +1,14 @@
 package com.taban.learnenglish.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListAdapter;
@@ -16,6 +18,8 @@ import com.taban.learnenglish.R;
 import com.taban.learnenglish.adpters.WordsListAdapter;
 import com.taban.learnenglish.utilities.WordsManager;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 
 public class WordsToMemorizeActivity extends AppCompatActivity {
@@ -48,6 +52,14 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
 
         //MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.pardon);
         //mediaPlayer.start(); // no need to call prepare(); create() does that for you
+/*
+        try {
+            int resId = getResources().getIdentifier("collaborate", "raw", getPackageName());
+            MediaPlayer mediaPlayer = MediaPlayer.create(this, resId);
+            mediaPlayer.start();
+        } catch (Exception e) {
+            Log.e("TAL", "could not play",e);
+        }*/
     }
 
     public void playMyWords(View view) {

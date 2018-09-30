@@ -1,5 +1,6 @@
 package com.taban.learnenglish.activities;
 
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import java.util.TimerTask;
 public class WordPlayerActivity extends AppCompatActivity {
 
     private static final int WORD_PLAY_INTERVAL = 4*1000;
+    private static final int WORD_PLAY_DELAY = (int) (0.75*1000);
+
     private Word prevPlayedWord;
     private List<Word> wordsToMemorize;
 
@@ -25,6 +28,8 @@ public class WordPlayerActivity extends AppCompatActivity {
     private TextView definitionTextView;
 
     private Random random = new Random();
+    TimerTask playerTask;
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +38,16 @@ public class WordPlayerActivity extends AppCompatActivity {
 
         wordsToMemorize = (List<Word>) getIntent().getSerializableExtra("wordsToMemorize");
 
+        // Init the textviews
         wordTextView = (TextView) findViewById(R.id.wordDisplay);
         definitionTextView = (TextView) findViewById(R.id.definitionDisplay);
+        wordTextView.setText("");
+        definitionTextView.setText("");
 
-        prevPlayedWord = getAndDisplayRandomWord();
+        // Start display the words randomly
+        prevPlayedWord = popRandomWord();
 
-        TimerTask playerTask = new TimerTask() {
+        playerTask = new TimerTask() {
             @Override
             public void run() {
 
@@ -48,6 +57,8 @@ public class WordPlayerActivity extends AppCompatActivity {
                         Word newWordDisplayed = getAndDisplayRandomWord();
                         wordsToMemorize.add(prevPlayedWord);
                         prevPlayedWord = newWordDisplayed;
+
+                        playAudioWord(newWordDisplayed);
                     }
                 });
 
@@ -55,7 +66,20 @@ public class WordPlayerActivity extends AppCompatActivity {
             }
         };
 
-        new Timer().scheduleAtFixedRate(playerTask,0, WORD_PLAY_INTERVAL);
+        timer = new Timer();
+        timer.scheduleAtFixedRate(playerTask, WORD_PLAY_DELAY, WORD_PLAY_INTERVAL);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        timer.cancel();
+    }
+
+    private void playAudioWord(Word newWordDisplayed) {
+        int resId = getResources().getIdentifier(newWordDisplayed.getWord(), "raw", getPackageName());
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, resId);
+        mediaPlayer.start();
     }
 
     private Word getRandomWord() {
