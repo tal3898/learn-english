@@ -1,5 +1,6 @@
 package com.taban.learnenglish.activities;
 
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -36,6 +37,9 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
 
         wordsListView = (ListView)findViewById(R.id.wordsListView);
         wordsListView.setAdapter(wordsListAdapter);
+
+        //MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.pardon);
+        //mediaPlayer.start(); // no need to call prepare(); create() does that for you
     }
 
     @Override
