@@ -30,8 +30,8 @@ public class WordPlayerActivity extends AppCompatActivity {
     private TextView wordTextView;
     private TextView definitionTextView;
 
-    TimerTask playerTask;
-    Timer timer;
+    Handler handler;
+    Runnable wordsMemorizeRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,32 +47,28 @@ public class WordPlayerActivity extends AppCompatActivity {
         // Init variables
         wordsToMemorize = (List<Word>) getIntent().getSerializableExtra("wordsToMemorize");
         wordsMemorizer = new WordsMemorizer(wordTextView, definitionTextView, wordsToMemorize);
+        handler = new Handler();
 
         // Start display the words randomly
-
-        playerTask = new TimerTask() {
+        wordsMemorizer.prepare();
+        wordsMemorizeRunnable = new Runnable() {
             @Override
             public void run() {
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        wordsMemorizer.displayAndPlayRandomWord();
-                    }
-                });
-
-
+                wordsMemorizer.displayAndPlayRandomWord();
+                handler.postDelayed(this, WORD_PLAY_INTERVAL);
             }
+
         };
 
-        timer = new Timer();
-        timer.scheduleAtFixedRate(playerTask, WORD_PLAY_DELAY, WORD_PLAY_INTERVAL);
+        handler.postDelayed(wordsMemorizeRunnable, WORD_PLAY_DELAY);
+
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        timer.cancel();
+        handler.removeCallbacks(wordsMemorizeRunnable);
     }
 
 

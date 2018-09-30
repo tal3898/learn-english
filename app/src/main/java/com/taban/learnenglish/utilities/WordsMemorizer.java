@@ -3,6 +3,7 @@ package com.taban.learnenglish.utilities;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.taban.learnenglish.activities.LearnEnglishApplication;
@@ -57,6 +58,10 @@ public class WordsMemorizer {
         this.wordsToMemorize.remove(randomWord);
 
         return randomWord;
+    }
+
+    public void prepare() {
+        this.prevPlayedWord = popRandomWord();
     }
 
     public void displayAndPlayRandomWord() {
