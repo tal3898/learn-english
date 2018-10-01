@@ -53,38 +53,30 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
         wordsListView = (SwipeMenuListView)findViewById(R.id.wordsListView);
         wordsListView.setAdapter(wordsListAdapter);
 
+        // Create the swipe menu in the list view
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
             public void create(SwipeMenu menu) {
-                // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(
+                // create "Memorized" item
+                SwipeMenuItem memorizedItem = new SwipeMenuItem(
                         getApplicationContext());
-                // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
-                // set item width
-                openItem.setWidth(170);
-                // set item title
-                openItem.setTitle("Open");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
-                // add to menu
-                menu.addMenuItem(openItem);
+
+                memorizedItem.setBackground(R.color.memorizedWordItem);
+                memorizedItem.setWidth(270);
+                memorizedItem.setTitle("O");
+                memorizedItem.setTitleSize(18);
+                memorizedItem.setTitleColor(Color.BLACK);
 
                 // create "delete" item
                 SwipeMenuItem deleteItem = new SwipeMenuItem(
                         getApplicationContext());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
-                // set item width
-                deleteItem.setWidth(170);
-                // set a icon
+                deleteItem.setBackground(R.color.deleteWordItem);
+                deleteItem.setWidth(270);
                 deleteItem.setIcon(R.drawable.ic_settings_wheel);
-                // add to menu
+
+                // add items to menu
+                menu.addMenuItem(memorizedItem);
                 menu.addMenuItem(deleteItem);
             }
         };
@@ -97,14 +89,6 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
 
         //MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.pardon);
         //mediaPlayer.start(); // no need to call prepare(); create() does that for you
-/*
-        try {
-            int resId = getResources().getIdentifier("collaborate", "raw", getPackageName());
-            MediaPlayer mediaPlayer = MediaPlayer.create(this, resId);
-            mediaPlayer.start();
-        } catch (Exception e) {
-            Log.e("TAL", "could not play",e);
-        }*/
     }
 
     public void playMyWords(View view) {
