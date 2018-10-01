@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.taban.learnenglish.R;
 import com.taban.learnenglish.adpters.WordsListAdapter;
+import com.taban.learnenglish.models.Word;
 import com.taban.learnenglish.utilities.WordsManager;
 
 import java.io.File;
@@ -31,6 +33,8 @@ import java.io.Serializable;
 public class WordsToMemorizeActivity extends AppCompatActivity {
 
     private SwipeMenuListView wordsListView;
+    private WordsListAdapter wordsListAdapter;
+
     private WordsManager wordsManager;
     private FloatingActionButton wordPlayBtn;
 
@@ -48,10 +52,12 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
         wordsManager = new WordsManager();
         wordsManager.loadAllWords();
 
-        ListAdapter wordsListAdapter = new WordsListAdapter(this,wordsManager.newWordsToMemorize);
+        wordsListAdapter = new WordsListAdapter(this,wordsManager.newWordsToMemorize);
 
         wordsListView = (SwipeMenuListView)findViewById(R.id.wordsListView);
         wordsListView.setAdapter(wordsListAdapter);
+
+
 
         // Create the swipe menu in the list view
         SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -84,11 +90,29 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
         // set creator
         wordsListView.setMenuCreator(creator);
 
+        wordsListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                final Word clickedWord = wordsManager.newWordsToMemorize.get(position);
+
+                
+                switch (index) {
+                    // Memorized item
+                    case 0:
+                        Log.i("TAL", "adding word (" + clickedWord.getWord() + ") to memorized words");
+                        break;
+                    // Delete item
+                    case 1:
+                        Log.i("TAL", "deleting word (" + clickedWord.getWord() + ") (adding word to already known words)");
+                        break;
+                }
+                // false : close the menu; true : not close the menu
+                return false;
+            }
+        });
+
         // Initi the floating button
         wordPlayBtn = (FloatingActionButton) findViewById(R.id.words_play_btn);
-
-        //MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.pardon);
-        //mediaPlayer.start(); // no need to call prepare(); create() does that for you
     }
 
     public void playMyWords(View view) {

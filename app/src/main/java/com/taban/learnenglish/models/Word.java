@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Word implements Serializable {
-    private String word;
+    public String word;
     private String definition;
     private List<String> examples;
     private Object audioFile;

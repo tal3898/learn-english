@@ -11,9 +11,11 @@ import com.taban.learnenglish.models.Difficulty;
 import com.taban.learnenglish.models.Word;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class WordsManager {
     public List<Word> newWordsToMemorize;
@@ -25,8 +27,89 @@ public class WordsManager {
     public WordsManager() {
         this.newWordsToMemorize = new ArrayList<>();
         this.memorizedWords = new ArrayList<>();
+
         this.wordsNotMemorizedYet = new HashMap<>();
         this.deletedWords = new HashMap<>();
+
+        for (Difficulty difficulty : Difficulty.values()) {
+            this.wordsNotMemorizedYet.put(difficulty, new ArrayList<Word>());
+            this.deletedWords.put(difficulty, new ArrayList<Word>());
+        }
+
+    }
+
+    // Assist method before creating the words files
+    public void createWordsNotMemorizedYet() {
+        for (Difficulty difficulty : Difficulty.values()) {
+            this.wordsNotMemorizedYet.put(difficulty, new ArrayList<Word>());
+        }
+
+        this.wordsNotMemorizedYet.put(Difficulty.BEGINNER, Arrays.asList(new Word("obstruction", "a", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("protest", "b", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("controversial", "c", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("preface", "d", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("appetite", "e", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("mansion", "f", new ArrayList<String>(), null, Difficulty.BEGINNER)
+        ));
+
+        this.wordsNotMemorizedYet.put(Difficulty.NORMAL, Arrays.asList(new Word("captain", "a", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("integrity", "b", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("aggression", "c", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("forget", "d", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("calculate", "e", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("scold", "f", new ArrayList<String>(), null, Difficulty.BEGINNER)
+        ));
+
+        this.wordsNotMemorizedYet.put(Difficulty.EXPERT, Arrays.asList(new Word("tickle", "a", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("thanks to", "b", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("recycle", "c", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("inwards", "d", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("pride", "e", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("sway", "f", new ArrayList<String>(), null, Difficulty.BEGINNER)
+        ));
+    }
+
+    public void createDeletedWords() {
+        for (Difficulty difficulty : Difficulty.values()) {
+            this.deletedWords.put(difficulty, new ArrayList<Word>());
+        }
+
+        this.deletedWords.put(Difficulty.BEGINNER, Arrays.asList(new Word("forbidden", "a", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("apparatus", "b", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("merchant", "c", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("lure", "d", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("collaborate", "e", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("rescue", "f", new ArrayList<String>(), null, Difficulty.BEGINNER)
+        ));
+
+        this.deletedWords.put(Difficulty.NORMAL, Arrays.asList(new Word("compassion", "a", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("luxury", "b", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("transmit", "c", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("under", "d", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("exactly", "e", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("matriarch", "f", new ArrayList<String>(), null, Difficulty.BEGINNER)
+        ));
+
+        this.deletedWords.put(Difficulty.EXPERT, Arrays.asList(new Word("though", "a", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("object", "b", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("simplify", "c", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("regular", "d", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("prohibition", "e", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("addict", "f", new ArrayList<String>(), null, Difficulty.BEGINNER)
+        ));
+    }
+
+    public void createMemorizedWords() {
+        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("organization", "ארגון", new ArrayList<String>(), null, Difficulty.BEGINNER));
+    }
+
+    public void createNewWordsToMemorize() {
+        this.newWordsToMemorize.add(new Word("collaborate", "כלב", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("desirable", "חתול", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("evacuation", "אמא", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("expectation", "אבא", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("interference", "אח", new ArrayList<String>(), null, Difficulty.BEGINNER));
     }
 
     // Access Methods
@@ -38,11 +121,10 @@ public class WordsManager {
     @TargetApi(Build.VERSION_CODES.N)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void loadAllWords() {
-        this.newWordsToMemorize.add(new Word("collaborate", "כלב", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.newWordsToMemorize.add(new Word("desirable", "חתול", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.newWordsToMemorize.add(new Word("evacuation", "אמא", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.newWordsToMemorize.add(new Word("expectation", "אבא", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.newWordsToMemorize.add(new Word("interference", "אח", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.createDeletedWords();
+        this.createMemorizedWords();
+        this.createNewWordsToMemorize();
+        this.createWordsNotMemorizedYet();
 
         FileWriter fileWriter = new FileWriter();
         fileWriter.writeObjectIntoFile(this.newWordsToMemorize, "newWordsToMemorize.dat");
@@ -54,6 +136,20 @@ public class WordsManager {
         //this.deletedWords = (Map<Difficulty, List<Word>>) fileReader.readObjectFromFile("deletedWords.dat");
 
 
+    }
+
+    public void memorizeWord(Word word) {
+        this.newWordsToMemorize.remove(word);
+        this.memorizedWords.add(word);
+
+        Word newWordToMemorize = getRandomNotMemorizedWord();
+        this.newWordsToMemorize.add(newWordToMemorize);
+    }
+
+    private Word getRandomNotMemorizedWord() {
+        Random random = new Random();
+        int wordIndex = random.nextInt(this.wordsNotMemorizedYet.get(Globals.getUserChosenDifficulty()).size());
+        return this.wordsNotMemorizedYet.get(Globals.getUserChosenDifficulty()).get(wordIndex);
     }
 
 
