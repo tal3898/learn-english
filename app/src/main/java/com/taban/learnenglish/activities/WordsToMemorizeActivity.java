@@ -1,6 +1,8 @@
 package com.taban.learnenglish.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +16,10 @@ import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.taban.learnenglish.R;
 import com.taban.learnenglish.adpters.WordsListAdapter;
 import com.taban.learnenglish.utilities.WordsManager;
@@ -24,7 +30,7 @@ import java.io.Serializable;
 
 public class WordsToMemorizeActivity extends AppCompatActivity {
 
-    private ListView wordsListView;
+    private SwipeMenuListView wordsListView;
     private WordsManager wordsManager;
     private FloatingActionButton wordPlayBtn;
 
@@ -44,8 +50,47 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
 
         ListAdapter wordsListAdapter = new WordsListAdapter(this,wordsManager.newWordsToMemorize);
 
-        wordsListView = (ListView)findViewById(R.id.wordsListView);
+        wordsListView = (SwipeMenuListView)findViewById(R.id.wordsListView);
         wordsListView.setAdapter(wordsListAdapter);
+
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+                // create "open" item
+                SwipeMenuItem openItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                        0xCE)));
+                // set item width
+                openItem.setWidth(170);
+                // set item title
+                openItem.setTitle("Open");
+                // set item title fontsize
+                openItem.setTitleSize(18);
+                // set item title font color
+                openItem.setTitleColor(Color.WHITE);
+                // add to menu
+                menu.addMenuItem(openItem);
+
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                deleteItem.setWidth(170);
+                // set a icon
+                deleteItem.setIcon(R.drawable.ic_settings_wheel);
+                // add to menu
+                menu.addMenuItem(deleteItem);
+            }
+        };
+
+        // set creator
+        wordsListView.setMenuCreator(creator);
 
         // Initi the floating button
         wordPlayBtn = (FloatingActionButton) findViewById(R.id.words_play_btn);
