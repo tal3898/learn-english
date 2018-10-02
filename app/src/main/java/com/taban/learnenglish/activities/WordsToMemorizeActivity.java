@@ -32,7 +32,7 @@ import java.io.Serializable;
 
 public class WordsToMemorizeActivity extends AppCompatActivity {
 
-    private SwipeMenuListView wordsListView;
+    private ListView wordsListView;
     private WordsListAdapter wordsListAdapter;
 
     private WordsManager wordsManager;
@@ -54,7 +54,7 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
 
         wordsListAdapter = new WordsListAdapter(this,wordsManager.newWordsToMemorize);
 
-        wordsListView = (SwipeMenuListView)findViewById(R.id.wordsListView);
+        wordsListView = (ListView)findViewById(R.id.wordsListView);
         wordsListView.setAdapter(wordsListAdapter);
 
 
@@ -87,29 +87,7 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
             }
         };
 
-        // set creator
-        wordsListView.setMenuCreator(creator);
 
-        wordsListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                final Word clickedWord = wordsManager.newWordsToMemorize.get(position);
-
-                
-                switch (index) {
-                    // Memorized item
-                    case 0:
-                        Log.i("TAL", "adding word (" + clickedWord.getWord() + ") to memorized words");
-                        break;
-                    // Delete item
-                    case 1:
-                        Log.i("TAL", "deleting word (" + clickedWord.getWord() + ") (adding word to already known words)");
-                        break;
-                }
-                // false : close the menu; true : not close the menu
-                return false;
-            }
-        });
 
         // Initi the floating button
         wordPlayBtn = (FloatingActionButton) findViewById(R.id.words_play_btn);
