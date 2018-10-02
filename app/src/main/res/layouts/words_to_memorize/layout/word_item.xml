@@ -12,18 +12,24 @@
         >
         <!-- Bottom View Start-->
         <LinearLayout
-            android:background="#66ddff00"
             android:id="@+id/bottom_wrapper"
             android:layout_width="160dp"
             android:weightSum="1"
             android:layout_height="match_parent">
-            <Button
+
+            <ImageView
                 android:id="@+id/testbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="testbtn"
-                tools:layout_editor_absoluteX="234dp"
-                tools:layout_editor_absoluteY="102dp" />
+                android:src="@drawable/ic_brain"
+                android:background="@color/memorizedWordItem"
+                android:layout_width="80dp"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/testbtn2"
+                android:src="@drawable/ic_delete"
+                android:background="@color/deleteWordItem"
+                android:layout_width="80dp"
+                android:layout_height="match_parent" />
             <!--What you want to show-->
         </LinearLayout>
         <!-- Bottom View End-->
