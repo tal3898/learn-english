@@ -18,14 +18,14 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/testbtn"
+                android:id="@+id/memorizedWordBtn"
                 android:src="@drawable/ic_brain"
                 android:background="@color/memorizedWordItem"
                 android:layout_width="80dp"
                 android:layout_height="match_parent" />
 
             <ImageView
-                android:id="@+id/testbtn2"
+                android:id="@+id/deleteWordBtn"
                 android:src="@drawable/ic_delete"
                 android:background="@color/deleteWordItem"
                 android:layout_width="80dp"

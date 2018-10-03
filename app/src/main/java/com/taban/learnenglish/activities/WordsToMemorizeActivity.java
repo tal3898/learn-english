@@ -52,7 +52,7 @@ public class WordsToMemorizeActivity extends AppCompatActivity {
         wordsManager = new WordsManager();
         wordsManager.loadAllWords();
 
-        wordsListAdapter = new WordsListAdapter(this,wordsManager.newWordsToMemorize);
+        wordsListAdapter = new WordsListAdapter(this,wordsManager.newWordsToMemorize, wordsManager);
 
         wordsListView = (ListView)findViewById(R.id.wordsListView);
         wordsListView.setAdapter(wordsListAdapter);

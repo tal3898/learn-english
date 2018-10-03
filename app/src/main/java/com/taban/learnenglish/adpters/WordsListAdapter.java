@@ -11,16 +11,17 @@ import android.widget.TextView;
 import com.daimajia.swipe.adapters.ArraySwipeAdapter;
 import com.taban.learnenglish.R;
 import com.taban.learnenglish.models.Word;
+import com.taban.learnenglish.utilities.WordsManager;
 
 import java.util.List;
 
 public class WordsListAdapter extends ArraySwipeAdapter<Word> {
 
-    private List<Word> referenceCopy;
+    private WordsManager wordsManager;
 
-    public WordsListAdapter(Context context, List<Word> words) {
+    public WordsListAdapter(Context context, List<Word> words, WordsManager wordsManager) {
         super(context, R.layout.word_item, words);
-        this.referenceCopy = words;
+        this.wordsManager = wordsManager;
     }
 
     @Override
@@ -28,21 +29,31 @@ public class WordsListAdapter extends ArraySwipeAdapter<Word> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View wordItem = inflater.inflate(R.layout.word_item, parent, false);
 
-        final Word word = (Word) getItem(position);
+        final Word currentWordItem = (Word) getItem(position);
         TextView wordTextView = wordItem.findViewById(R.id.word);
         TextView definitionTextView = wordItem.findViewById(R.id.definition);
 
-        wordTextView.setText(word.getWord());
-        definitionTextView.setText(word.getDefinition());
+        wordTextView.setText(currentWordItem.getWord());
+        definitionTextView.setText(currentWordItem.getDefinition());
 
-        wordItem.findViewById(R.id.testbtn).setOnClickListener(new View.OnClickListener() {
+        wordItem.findViewById(R.id.memorizedWordBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("TAL", "clicked btn " + word.getWord());
-
-                referenceCopy.remove(word);
-
+                wordsManager.memorizeWord(currentWordItem);
                 notifyDataSetChanged();
+
+                Log.i("TAL", "clicked btn " + currentWordItem.getWord());
+            }
+        });
+
+
+        wordItem.findViewById(R.id.deleteWordBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wordsManager.deleteWordTheUserAlreadyKnow(currentWordItem);
+                notifyDataSetChanged();
+
+                Log.i("TAL", "clicked btn " + currentWordItem.getWord());
             }
         });
 
