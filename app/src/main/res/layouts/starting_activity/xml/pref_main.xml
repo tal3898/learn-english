@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="General">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="key_upload_over_wifi"
+            android:summary="Upload the videos when wifi is available"
+            android:title="Auto upload" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="key_upload_over_wifi"
+            android:summary="Upload the videos when wifi is available"
+            android:title="Auto upload" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
