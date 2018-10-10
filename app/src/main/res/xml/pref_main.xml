@@ -1,12 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Share with your friends">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="key_upload_over_wifi"
+            android:summary="Upload the videos when wifi is available"
+            android:title="share with facebook" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:summary="Upload the videos when wifi is available"
+            android:title="share with tweeter" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:summary="Upload the videos when wifi is available"
+            android:title="share with other application" />
+
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Words data">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="key_upload_over_wifi"
+            android:summary="Upload the videos when wifi is available"
+            android:title="Words you have memorized" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:summary="Upload the videos when wifi is available"
+            android:title="Words you already know" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:summary="Upload the videos when wifi is available"
+            android:title="Words you didn't learn yet" />
+
+
+    </PreferenceCategory>
     <PreferenceCategory android:title="General">
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="key_upload_over_wifi"
             android:summary="Upload the videos when wifi is available"
-            android:title="Auto upload" />
+            android:title="Notification" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:summary="Upload the videos when wifi is available"
+            android:title="Notification" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:summary="Upload the videos when wifi is available"
+            android:title="Test me on all memorized words" />
+
 
     </PreferenceCategory>
 
