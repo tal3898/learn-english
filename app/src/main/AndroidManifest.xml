@@ -26,7 +26,11 @@
             android:label="@string/title_activity_words_to_memorize"
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.WordPlayerActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".SpecificWordActivity"
+            android:label="@string/title_activity_specific_word"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

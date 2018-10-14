@@ -1,6 +1,7 @@
 package com.taban.learnenglish.adpters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,13 @@ import android.widget.TextView;
 
 import com.daimajia.swipe.adapters.ArraySwipeAdapter;
 import com.taban.learnenglish.R;
+import com.taban.learnenglish.SpecificWordActivity;
+import com.taban.learnenglish.activities.LearnEnglishApplication;
+import com.taban.learnenglish.activities.WordPlayerActivity;
 import com.taban.learnenglish.models.Word;
 import com.taban.learnenglish.utilities.WordsManager;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class WordsListAdapter extends ArraySwipeAdapter<Word> {
@@ -55,6 +60,17 @@ public class WordsListAdapter extends ArraySwipeAdapter<Word> {
 
                 Log.i("TAL", "clicked btn " + currentWordItem.getWord());
             }
+        });
+
+        wordItem.findViewById(R.id.wordInfo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent wordsPlayerActivityIntent = new Intent(LearnEnglishApplication.getAppContext(), SpecificWordActivity.class);
+                wordsPlayerActivityIntent.putExtra("wordData", (Serializable) currentWordItem);
+                wordsPlayerActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                LearnEnglishApplication.getAppContext().startActivity(wordsPlayerActivityIntent);
+            }
+
         });
 
         return wordItem;

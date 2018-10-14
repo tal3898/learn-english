@@ -6,47 +6,53 @@
     android:layout_height="match_parent">
 
     <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
         android:id="@+id/swipe"
-        >
+        android:layout_width="0dp"
+        android:layout_height="85dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
         <!-- Bottom View Start-->
         <LinearLayout
             android:id="@+id/bottom_wrapper"
             android:layout_width="160dp"
-            android:weightSum="1"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:weightSum="1">
 
             <ImageView
                 android:id="@+id/memorizedWordBtn"
-                android:src="@drawable/ic_brain"
-                android:background="@color/memorizedWordItem"
                 android:layout_width="80dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/memorizedWordItem"
+                android:src="@drawable/ic_brain" />
 
             <ImageView
                 android:id="@+id/deleteWordBtn"
-                android:src="@drawable/ic_delete"
-                android:background="@color/deleteWordItem"
                 android:layout_width="80dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/deleteWordItem"
+                android:src="@drawable/ic_delete" />
             <!--What you want to show-->
         </LinearLayout>
         <!-- Bottom View End-->
 
         <!-- Surface View Start -->
-        <LinearLayout
-            android:padding="10dp"
-            android:background="#ffffff"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:padding="10dp">
+
             <TextView
                 android:id="@+id/word"
                 android:layout_width="wrap_content"
                 android:layout_height="31dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+
+                android:layout_alignTop="@+id/wordInfo"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="69dp"
+                android:layout_marginLeft="69dp"
                 android:text="Word"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -56,16 +62,31 @@
                 android:id="@+id/definition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginLeft="44dp"
-                android:layout_marginTop="28dp"
+
+                android:layout_alignStart="@+id/word"
+                android:layout_alignLeft="@+id/word"
+                android:layout_alignTop="@+id/word"
+                android:layout_marginStart="46dp"
+                android:layout_marginLeft="46dp"
+                android:layout_marginTop="37dp"
                 android:text="definition"
                 app:layout_constraintStart_toStartOf="@+id/word"
                 app:layout_constraintTop_toTopOf="@+id/word" />
-        </LinearLayout>
+
+            <Button
+                android:id="@+id/wordInfo"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="7dp"
+                android:text="Button" />
+        </RelativeLayout>
         <!-- Surface View End -->
     </com.daimajia.swipe.SwipeLayout>
-
 
 
 </android.support.constraint.ConstraintLayout>
