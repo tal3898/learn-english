@@ -47,7 +47,6 @@ public class SpecificWordActivity extends AppCompatActivity {
     public void playWord(View view) {
         Globals.wordsAudioManager.getWordMediaPlayer(word).start();
         // another bad code
-        // another bad code 2
     }
 
 }
