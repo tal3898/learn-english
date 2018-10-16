@@ -9,6 +9,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.taban.learnenglish.R;
+import com.taban.learnenglish.adpters.MemorizedWordsListAdapter;
 import com.taban.learnenglish.models.Word;
 import com.taban.learnenglish.utilities.WordsManager;
 
@@ -28,23 +29,9 @@ public class MemorizedWordsActivity extends AppCompatActivity {
         wordsManager = new WordsManager();
         wordsManager.loadAllWords();
 
-        List<String> words = new ArrayList<>();
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
-        words.add("aba");
+        List<Word> memorizedWords = wordsManager.memorizedWords;
 
-        ListAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, words);
+        MemorizedWordsListAdapter adapter = new MemorizedWordsListAdapter(memorizedWords);
         ListView listView = findViewById(R.id.memorizedWordsListView);
         listView.setAdapter(adapter);
 
