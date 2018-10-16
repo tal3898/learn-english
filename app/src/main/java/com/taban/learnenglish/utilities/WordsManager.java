@@ -116,12 +116,7 @@ public class WordsManager {
     }
 
     public void createNewWordsToMemorize() {
-        List<String> examples = new ArrayList<String>();
-        examples.add("I need to finish this app!!!");
-        examples.add("I need to finish this app!!!");
-        examples.add("I need to finish this app!!!");
-        examples.add("I need to finish this app!!!");
-        this.newWordsToMemorize.add(new Word("collaborate", "כלב", examples, null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("collaborate", "כלב", new ArrayList<String>(), null, Difficulty.BEGINNER));
         this.newWordsToMemorize.add(new Word("desirable", "חתול", new ArrayList<String>(), null, Difficulty.BEGINNER));
         this.newWordsToMemorize.add(new Word("evacuation", "אמא", new ArrayList<String>(), null, Difficulty.BEGINNER));
         this.newWordsToMemorize.add(new Word("expectation", "אבא", new ArrayList<String>(), null, Difficulty.BEGINNER));
