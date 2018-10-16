@@ -5,29 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/w1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
-        android:textColor="@color/toolBarTitle"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/w2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
-        android:layout_marginLeft="46dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        android:textColor="@color/toolBarTitle"
-        app:layout_constraintStart_toStartOf="@+id/w1"
-        app:layout_constraintTop_toBottomOf="@+id/w1" />
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="85dp">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/basic_word_item"></include>
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

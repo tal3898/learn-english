@@ -25,8 +25,8 @@ public class MemorizedWordsListAdapter extends ArrayAdapter<Word> {
         View wordItem = inflater.inflate(R.layout.memorized_word_item, parent, false);
         final Word currentWordItem = (Word) getItem(position);
 
-        TextView wordTextView = wordItem.findViewById(R.id.w1);
-        TextView definitionTextView = wordItem.findViewById(R.id.w2);
+        TextView wordTextView = wordItem.findViewById(R.id.word);
+        TextView definitionTextView = wordItem.findViewById(R.id.definition);
         wordTextView.setText(currentWordItem.getWord());
         definitionTextView.setText(currentWordItem.getDefinition());
 
