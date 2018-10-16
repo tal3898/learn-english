@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.taban.learnenglish.R;
 import com.taban.learnenglish.models.Word;
+import com.taban.learnenglish.utilities.Globals;
 
 public class SpecificWordActivity extends AppCompatActivity {
 
@@ -35,6 +36,16 @@ public class SpecificWordActivity extends AppCompatActivity {
         wordTextView.setText(word.getWord());
         definitionTextView.setText(word.getDefinition());
 
+        StringBuilder builder = new StringBuilder();
+        for(String s : word.getExamples()) {
+            builder.append(s).append("\r\n");
+        }
+
+        examplesTextView.setText(builder.toString());
+    }
+
+    public void playWord(View view) {
+        Globals.wordsAudioManager.getWordMediaPlayer(word).start();
     }
 
 }
