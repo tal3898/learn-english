@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import com.taban.learnenglish.R;
+import com.taban.learnenglish.SettingsActivity;
 import com.taban.learnenglish.adpters.WordsListAdapter;
 import com.taban.learnenglish.utilities.WordsManager;
 import java.io.Serializable;
