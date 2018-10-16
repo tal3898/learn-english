@@ -5,9 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.taban.learnenglish.MemorizedWordsActivity;
 import com.taban.learnenglish.R;
-import com.taban.learnenglish.utilities.Globals;
 
 public class MainActivity extends AppCompatActivity {
 
