@@ -16,6 +16,7 @@
         android:layout_marginStart="69dp"
         android:layout_marginLeft="69dp"
         android:text="Word"
+        android:textColor="@color/toolBarTitle"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +33,7 @@
         android:layout_marginLeft="46dp"
         android:layout_marginTop="37dp"
         android:text="definition"
+        android:textColor="@color/toolBarTitle"
         app:layout_constraintStart_toStartOf="@+id/word"
         app:layout_constraintTop_toTopOf="@+id/word" />
 
@@ -42,9 +44,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="7dp"
         android:text="Button" />
 
 </android.support.constraint.ConstraintLayout>
