@@ -1,4 +1,4 @@
-package com.taban.learnenglish;
+package com.taban.learnenglish.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
+import com.taban.learnenglish.R;
 import com.taban.learnenglish.activities.AppCompatPreferenceActivity;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
