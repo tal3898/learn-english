@@ -112,17 +112,17 @@ public class WordsManager {
 
     public void createMemorizedWords() {
         this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("list", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("audio", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("beginner", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("add", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("this", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("create", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("new", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("version", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("word", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
         this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.memorizedWords.add(new Word("plenty", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.memorizedWords.add(new Word("void", "הרבה", new ArrayList<String>(), null, Difficulty.BEGINNER));
         this.memorizedWords.add(new Word("organization", "ארגון", new ArrayList<String>(), null, Difficulty.BEGINNER));
     }
 
