@@ -9,18 +9,18 @@ public class WordExam {
     private List<String> options;
 
     //Ctor
-    public WordExam(Word wordToExam, List<String> options) {
-        this.wordToExam = wordToExam;
-        this.options = options;
+    public WordExam(Word wrdToExm, List<String> optns) {
+        this.setWordToExam(wrdToExm);
+        this.setOptions(optns);
     }
 
     // Access Methods
 
-    public void setWordToExam(Word wordToExam) {
+    private void setWordToExam(Word wordToExam) {
         this.wordToExam = wordToExam;
     }
 
-    public void setOptions(List<String> options) {
+    private void setOptions(List<String> options) {
         this.options = options;
     }
 
