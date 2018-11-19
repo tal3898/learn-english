@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Intent wordsToMemorizeActivityIntent = new Intent(this, MemorizedWordsActivity.class);
         startActivity(wordsToMemorizeActivityIntent);
     }
+
+    public void changeToExamLayout(View view) {
+        Intent examActivityIntent = new Intent(this, ExamActivity.class);
+        startActivity(examActivityIntent);
+    }
 }

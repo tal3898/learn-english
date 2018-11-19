@@ -31,7 +31,8 @@
             android:name=".activities.SpecificWordActivity"
             android:label="@string/title_activity_specific_word"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.MemorizedWordsActivity"></activity>
+        <activity android:name=".activities.MemorizedWordsActivity" />
+        <activity android:name=".activities.ExamActivity"></activity>
     </application>
 
 </manifest>
