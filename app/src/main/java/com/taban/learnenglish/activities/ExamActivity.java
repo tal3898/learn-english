@@ -3,6 +3,7 @@ package com.taban.learnenglish.activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,10 +25,22 @@ public class ExamActivity extends AppCompatActivity {
     List<Word> wordsToExam;
     Queue<WordExam> wordExamQueue;
 
+    TextView wordToExamTxt;
+    Button option1Btn;
+    Button option2Btn;
+    Button option3Btn;
+    Button option4Btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
+
+        wordToExamTxt = findViewById(R.id.TestedWordTxt);
+        option1Btn = findViewById(R.id.ExamOption1Btn);
+        option2Btn = findViewById(R.id.ExamOption2Btn);
+        option3Btn = findViewById(R.id.ExamOption3Btn);
+        option4Btn = findViewById(R.id.ExamOption4Btn);
 
         // Get the words to exam the user
         wordsToExam= (List<Word>) getIntent().getSerializableExtra("wordsToExam");
@@ -45,19 +58,48 @@ public class ExamActivity extends AppCompatActivity {
     }
 
     public void displayExam(WordExam exam) {
-        TextView word = findViewById(R.id.TestedWordTxt);
-        word.setText(exam.getWordToExam().getWord());
 
-        Button option1Btn = findViewById(R.id.ExamOption1Btn);
+        wordToExamTxt.setText(exam.getWordToExam().getWord());
+
+        option1Btn.setVisibility(View.INVISIBLE);
+        option2Btn.setVisibility(View.INVISIBLE);
+        option3Btn.setVisibility(View.INVISIBLE);
+        option4Btn.setVisibility(View.INVISIBLE);
+
+        int timeLongHidden = 2000;
+
+        // Wait 2 seconds
+        option1Btn.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                option1Btn.setVisibility(View.VISIBLE);
+            }
+        }, timeLongHidden);
+
+        option2Btn.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                option2Btn.setVisibility(View.VISIBLE);
+            }
+        }, timeLongHidden);
+
+        option3Btn.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                option3Btn.setVisibility(View.VISIBLE);
+            }
+        }, timeLongHidden);
+
+        option4Btn.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                option4Btn.setVisibility(View.VISIBLE);
+            }
+        }, timeLongHidden);
+
         option1Btn.setText(exam.getOptions().get(0));
-
-        Button option2Btn = findViewById(R.id.ExamOption2Btn);
         option2Btn.setText(exam.getOptions().get(1));
-
-        Button option3Btn = findViewById(R.id.ExamOption3Btn);
         option3Btn.setText(exam.getOptions().get(2));
-
-        Button option4Btn = findViewById(R.id.ExamOption4Btn);
         option4Btn.setText(exam.getOptions().get(3));
     }
 
