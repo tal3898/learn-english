@@ -27,7 +27,8 @@ public class WordsManager {
 
     public Map<Difficulty, List<Word>> wordsNotMemorizedYet;
 
-
+    // Ctor
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public WordsManager() {
         this.newWordsToMemorize = new ArrayList<>();
         this.memorizedWords = new ArrayList<>();
@@ -38,6 +39,8 @@ public class WordsManager {
         for (Difficulty difficulty : Difficulty.values()) {
             this.wordsNotMemorizedYet.put(difficulty, new ArrayList<Word>());
         }
+
+        this.loadAllWords();
 
     }
 
@@ -143,6 +146,18 @@ public class WordsManager {
     // Access Methods
     public List<Word> getNewWordsToMemorize() {
         return this.newWordsToMemorize;
+    }
+
+    public List<Word> getMemorizedWords() {
+        return memorizedWords;
+    }
+
+    public List<Word> getDeletedWords() {
+        return deletedWords;
+    }
+
+    public Map<Difficulty, List<Word>> getWordsNotMemorizedYet() {
+        return wordsNotMemorizedYet;
     }
 
     // Methods
