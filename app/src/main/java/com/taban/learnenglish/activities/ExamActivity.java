@@ -24,6 +24,8 @@ public class ExamActivity extends AppCompatActivity {
     WordsManager wordsManager;
     List<Word> wordsToExam;
     Queue<WordExam> wordExamQueue;
+    Queue<WordExam> mistakenExams;
+    WordExam currExam;
 
     TextView wordToExamTxt;
     Button option1Btn;
@@ -47,14 +49,45 @@ public class ExamActivity extends AppCompatActivity {
         Log.i("TAL", String.valueOf(wordsToExam.size()));
 
         wordExamQueue = generateAllWordsExam(wordsToExam);
+        mistakenExams = new LinkedList<>();
 
         start();
     }
 
-    public void start() {
-        WordExam curExam = wordExamQueue.poll();
-        displayExam(curExam);
+    public void onOptionSelected(View view) {
+        Button clickedBtn = (Button) view;
+        String chosenDefinition = clickedBtn.getText().toString();
 
+        if (currExam.guess(chosenDefinition)) {
+            Log.i("TAL", "correct");
+        } else {
+            Log.i("TAL", "loser");
+            mistakenExams.add(currExam);
+        }
+
+        if (wordExamQueue.size() == 0) {
+
+            if (mistakenExams.size() != 0) {
+                // now running the mistaken ones
+                wordExamQueue = new LinkedList<>(mistakenExams);
+                mistakenExams = new LinkedList<>();
+                currExam = wordExamQueue.poll();
+                displayExam(currExam);
+            } else {
+                // Finished the test
+                // TODO: add handle 
+                Log.i("TAL", "FINISHHH");
+            }
+        } else {
+            currExam = wordExamQueue.poll();
+            displayExam(currExam);
+        }
+
+    }
+
+    public void start() {
+        currExam = wordExamQueue.poll();
+        displayExam(currExam);
     }
 
     public void displayExam(WordExam exam) {
@@ -66,7 +99,7 @@ public class ExamActivity extends AppCompatActivity {
         option3Btn.setVisibility(View.INVISIBLE);
         option4Btn.setVisibility(View.INVISIBLE);
 
-        int timeLongHidden = 2000;
+        int timeLongHidden = 1000;
 
         // Wait 2 seconds
         option1Btn.postDelayed(new Runnable() {
