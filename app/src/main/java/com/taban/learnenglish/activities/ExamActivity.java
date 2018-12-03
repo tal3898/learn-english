@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.taban.learnenglish.R;
 import com.taban.learnenglish.models.Word;
 import com.taban.learnenglish.models.WordExam;
+import com.taban.learnenglish.utilities.Globals;
 import com.taban.learnenglish.utilities.WordsManager;
 
 import java.util.ArrayList;
@@ -60,9 +61,11 @@ public class ExamActivity extends AppCompatActivity {
 
         if (currExam.guess(chosenDefinition)) {
             Log.i("TAL", "correct");
+            Globals.wordsAudioManager.getWordMediaPlayer("great").start();
         } else {
             Log.i("TAL", "loser");
             mistakenExams.add(currExam);
+            Globals.wordsAudioManager.getWordMediaPlayer("off").start();
         }
 
         if (wordExamQueue.size() == 0) {

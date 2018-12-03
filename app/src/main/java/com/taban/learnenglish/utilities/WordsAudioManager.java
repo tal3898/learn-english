@@ -20,13 +20,17 @@ public class WordsAudioManager {
 
     // Methods
     public MediaPlayer getWordMediaPlayer(Word word) {
-        if (!wordsAudioFiles.containsKey(word.getWord())) {
+        return this.getWordMediaPlayer(word.getWord());
+    }
+
+    public MediaPlayer getWordMediaPlayer(String word) {
+        if (!wordsAudioFiles.containsKey(word)) {
             int resId = LearnEnglishApplication.getAppContext().getResources().getIdentifier(
-                    word.getWord(), "raw", LearnEnglishApplication.getAppContext().getPackageName());
+                    word, "raw", LearnEnglishApplication.getAppContext().getPackageName());
             MediaPlayer mediaPlayer = MediaPlayer.create(LearnEnglishApplication.getAppContext(), resId);
-            wordsAudioFiles.put(word.getWord(), mediaPlayer);
+            wordsAudioFiles.put(word, mediaPlayer);
         }
 
-        return wordsAudioFiles.get(word.getWord());
+        return wordsAudioFiles.get(word);
     }
 }
