@@ -68,73 +68,20 @@ public class ExamActivity extends AppCompatActivity {
         start();
     }
 
-    public void onOptionSelected(View view) {
-        Button clickedBtn = (Button) view;
-        String chosenDefinition = clickedBtn.getText().toString();
-        boolean userWasRight = currExam.guess(chosenDefinition);
-
-        if (userWasRight) {
-            Log.i("TAL", "correct");
-            Globals.wordsAudioManager.getWordMediaPlayer("great").start();
-        } else {
-            Log.i("TAL", "loser");
-            mistakenExams.add(currExam);
-            Globals.wordsAudioManager.getWordMediaPlayer("off").start();
+    /**
+     * The method generates a queue with the whole exam
+     * @param wordsToTest - The words to test on the user
+     * @return a queue with all the exams (exam for each word)
+     */
+    public Queue<WordExam> generateAllWordsExam(List<Word> wordsToTest) {
+        Queue<WordExam> exams = new LinkedList<>();
+        for(Word curWord : wordsToTest) {
+            List<String> curWordExamOptions = getWordOptions(curWord, wordsToTest, 4);
+            WordExam curWordExam = new WordExam(curWord, curWordExamOptions);
+            exams.add(curWordExam);
         }
 
-        displayRightAnswer(userWasRight, clickedBtn);
-
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                clickedBtn.setBackgroundResource(R.color.notAnsweredYetButton);
-                findRightAnswer().setBackgroundResource(R.color.notAnsweredYetButton);
-
-                if (wordExamQueue.size() == 0) {
-
-                    if (mistakenExams.size() != 0) {
-                        // now running the mistaken ones
-                        wordExamQueue = new LinkedList<>(mistakenExams);
-                        mistakenExams = new LinkedList<>();
-                        currExam = wordExamQueue.poll();
-                        displayExam(currExam);
-                    } else {
-                        // Finished the test
-                        // TODO: add handle
-                        Log.i("TAL", "FINISHHH");
-                    }
-                } else {
-                    currExam = wordExamQueue.poll();
-                    displayExam(currExam);
-                }
-            }
-        }, TIME_TO_SHOW_ANSWER);
-
-
-    }
-
-
-    public void displayRightAnswer(boolean userWasRight, Button clickedAnswerBtn) {
-        if (userWasRight) {
-            clickedAnswerBtn.setBackgroundResource(R.color.rightAnswerButton);
-        } else {
-            clickedAnswerBtn.setBackgroundResource(R.color.wrongAnswerButton);
-            findRightAnswer().setBackgroundResource(R.color.rightAnswerButton);
-        }
-    }
-
-    private Button findRightAnswer() {
-        Button rightAnswer = null;
-
-        for (Button optionBtn : allOptionsButtons) {
-            if (currExam.guess(optionBtn.getText().toString())) {
-                rightAnswer = optionBtn;
-
-                break;
-            }
-        }
-
-        return rightAnswer;
+        return exams;
     }
 
     public void start() {
@@ -188,20 +135,72 @@ public class ExamActivity extends AppCompatActivity {
         option4Btn.setText(exam.getOptions().get(3));
     }
 
-    /**
-     * The method generates a queue with the whole exam
-     * @param wordsToTest - The words to test on the user
-     * @return a queue with all the exams (exam for each word)
-     */
-    public Queue<WordExam> generateAllWordsExam(List<Word> wordsToTest) {
-        Queue<WordExam> exams = new LinkedList<>();
-        for(Word curWord : wordsToTest) {
-            List<String> curWordExamOptions = getWordOptions(curWord, wordsToTest, 4);
-            WordExam curWordExam = new WordExam(curWord, curWordExamOptions);
-            exams.add(curWordExam);
+    public void onOptionSelected(View view) {
+        Button clickedBtn = (Button) view;
+        String chosenDefinition = clickedBtn.getText().toString();
+        boolean userWasRight = currExam.guess(chosenDefinition);
+
+        if (userWasRight) {
+            Log.i("TAL", "correct");
+            Globals.wordsAudioManager.getWordMediaPlayer("great").start();
+        } else {
+            Log.i("TAL", "loser");
+            mistakenExams.add(currExam);
+            Globals.wordsAudioManager.getWordMediaPlayer("off").start();
         }
 
-        return exams;
+        displayRightAnswer(userWasRight, clickedBtn);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                clickedBtn.setBackgroundResource(R.color.notAnsweredYetButton);
+                findRightAnswer().setBackgroundResource(R.color.notAnsweredYetButton);
+
+                if (wordExamQueue.size() == 0) {
+
+                    if (mistakenExams.size() != 0) {
+                        // now running the mistaken ones
+                        wordExamQueue = new LinkedList<>(mistakenExams);
+                        mistakenExams = new LinkedList<>();
+                        currExam = wordExamQueue.poll();
+                        displayExam(currExam);
+                    } else {
+                        // Finished the test
+                        // TODO: add handle
+                        Log.i("TAL", "FINISHHH");
+                    }
+                } else {
+                    currExam = wordExamQueue.poll();
+                    displayExam(currExam);
+                }
+            }
+        }, TIME_TO_SHOW_ANSWER);
+
+
+    }
+
+    public void displayRightAnswer(boolean userWasRight, Button clickedAnswerBtn) {
+        if (userWasRight) {
+            clickedAnswerBtn.setBackgroundResource(R.color.rightAnswerButton);
+        } else {
+            clickedAnswerBtn.setBackgroundResource(R.color.wrongAnswerButton);
+            findRightAnswer().setBackgroundResource(R.color.rightAnswerButton);
+        }
+    }
+
+    private Button findRightAnswer() {
+        Button rightAnswer = null;
+
+        for (Button optionBtn : allOptionsButtons) {
+            if (currExam.guess(optionBtn.getText().toString())) {
+                rightAnswer = optionBtn;
+
+                break;
+            }
+        }
+
+        return rightAnswer;
     }
 
     /**
