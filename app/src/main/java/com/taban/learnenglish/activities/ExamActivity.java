@@ -38,17 +38,23 @@ public class ExamActivity extends AppCompatActivity {
     Button option2Btn;
     Button option3Btn;
     Button option4Btn;
+    List<Button> allOptionsButtons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
 
+        allOptionsButtons = new ArrayList<>();
         wordToExamTxt = findViewById(R.id.TestedWordTxt);
         option1Btn = findViewById(R.id.ExamOption1Btn);
         option2Btn = findViewById(R.id.ExamOption2Btn);
         option3Btn = findViewById(R.id.ExamOption3Btn);
         option4Btn = findViewById(R.id.ExamOption4Btn);
+        allOptionsButtons.add(option1Btn);
+        allOptionsButtons.add(option2Btn);
+        allOptionsButtons.add(option3Btn);
+        allOptionsButtons.add(option4Btn);
 
         handler = new Handler();
 
@@ -82,6 +88,7 @@ public class ExamActivity extends AppCompatActivity {
             @Override
             public void run() {
                 clickedBtn.setBackgroundResource(R.color.notAnsweredYetButton);
+                findRightAnswer().setBackgroundResource(R.color.notAnsweredYetButton);
 
                 if (wordExamQueue.size() == 0) {
 
@@ -112,7 +119,22 @@ public class ExamActivity extends AppCompatActivity {
             clickedAnswerBtn.setBackgroundResource(R.color.rightAnswerButton);
         } else {
             clickedAnswerBtn.setBackgroundResource(R.color.wrongAnswerButton);
+            findRightAnswer().setBackgroundResource(R.color.rightAnswerButton);
         }
+    }
+
+    private Button findRightAnswer() {
+        Button rightAnswer = null;
+
+        for (Button optionBtn : allOptionsButtons) {
+            if (currExam.guess(optionBtn.getText().toString())) {
+                rightAnswer = optionBtn;
+
+                break;
+            }
+        }
+
+        return rightAnswer;
     }
 
     public void start() {
