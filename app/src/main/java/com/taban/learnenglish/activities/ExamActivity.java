@@ -84,11 +84,18 @@ public class ExamActivity extends AppCompatActivity {
         return exams;
     }
 
+    /**
+     * The method starts the exam
+     */
     public void start() {
         currExam = wordExamQueue.poll();
         displayExam(currExam);
     }
 
+    /**
+     * The method displays the exam - shows the word, and after x seconds, shows the optional answers
+     * @param exam - The exam to display
+     */
     public void displayExam(WordExam exam) {
 
         wordToExamTxt.setText(exam.getWordToExam().getWord());
@@ -135,6 +142,13 @@ public class ExamActivity extends AppCompatActivity {
         option4Btn.setText(exam.getOptions().get(3));
     }
 
+    /**
+     * The method is called when an options is selected. The method play a sound to indicate
+     * to the user if he was correct, and color the answers, and after X seconds:
+     * if the user was wrong, insert the exam into a mistaken list, and display the next exam
+     * (or finish the total test)
+     * @param view - A button object which is the button the user clicked
+     */
     public void onOptionSelected(View view) {
         Button clickedBtn = (Button) view;
         String chosenDefinition = clickedBtn.getText().toString();
@@ -180,6 +194,12 @@ public class ExamActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * The method display the right answer - if answered right, color the clicked button with green,
+     * else color the clicked button with red, and the right button with green.
+     * @param userWasRight - Boolean which indicates whether the user clicked correctly or not
+     * @param clickedAnswerBtn - The button the user clicked
+     */
     public void displayRightAnswer(boolean userWasRight, Button clickedAnswerBtn) {
         if (userWasRight) {
             clickedAnswerBtn.setBackgroundResource(R.color.rightAnswerButton);
@@ -189,6 +209,10 @@ public class ExamActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * The method search for the right answer button.
+     * @return The button of the right answer.
+     */
     private Button findRightAnswer() {
         Button rightAnswer = null;
 
