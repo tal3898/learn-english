@@ -5,5 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="toolBarTitle">#000000</color>
     <color name="memorizedWordItem">#07b3de</color>
-    <color name="deleteWordItem">#fc4a3d</color>
+    <color name="deleteWordItem">#f44336</color>
+    <color name="wrongAnswerButton">#f44336</color>
+    <color name="rightAnswerButton">#a5d6a7</color>
+    <color name="notAnsweredYetButton">#80cbc4</color>
 </resources>

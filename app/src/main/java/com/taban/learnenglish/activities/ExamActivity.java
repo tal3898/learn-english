@@ -1,5 +1,6 @@
 package com.taban.learnenglish.activities;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,8 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 public class ExamActivity extends AppCompatActivity {
+
+    private static final int TIME_TO_SHOW_ANSWER = 2000;
 
     WordsManager wordsManager;
     List<Word> wordsToExam;
@@ -58,8 +61,9 @@ public class ExamActivity extends AppCompatActivity {
     public void onOptionSelected(View view) {
         Button clickedBtn = (Button) view;
         String chosenDefinition = clickedBtn.getText().toString();
+        boolean userWasRight = currExam.guess(chosenDefinition);
 
-        if (currExam.guess(chosenDefinition)) {
+        if (userWasRight) {
             Log.i("TAL", "correct");
             Globals.wordsAudioManager.getWordMediaPlayer("great").start();
         } else {
@@ -68,24 +72,43 @@ public class ExamActivity extends AppCompatActivity {
             Globals.wordsAudioManager.getWordMediaPlayer("off").start();
         }
 
-        if (wordExamQueue.size() == 0) {
+        displayRightAnswer(userWasRight, clickedBtn).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                clickedBtn.setBackgroundResource(R.color.notAnsweredYetButton);
 
-            if (mistakenExams.size() != 0) {
-                // now running the mistaken ones
-                wordExamQueue = new LinkedList<>(mistakenExams);
-                mistakenExams = new LinkedList<>();
-                currExam = wordExamQueue.poll();
-                displayExam(currExam);
-            } else {
-                // Finished the test
-                // TODO: add handle 
-                Log.i("TAL", "FINISHHH");
+                if (wordExamQueue.size() == 0) {
+
+                    if (mistakenExams.size() != 0) {
+                        // now running the mistaken ones
+                        wordExamQueue = new LinkedList<>(mistakenExams);
+                        mistakenExams = new LinkedList<>();
+                        currExam = wordExamQueue.poll();
+                        displayExam(currExam);
+                    } else {
+                        // Finished the test
+                        // TODO: add handle
+                        Log.i("TAL", "FINISHHH");
+                    }
+                } else {
+                    currExam = wordExamQueue.poll();
+                    displayExam(currExam);
+                }
             }
+        }, TIME_TO_SHOW_ANSWER);
+
+
+    }
+
+
+    public Button displayRightAnswer(boolean userWasRight, Button clickedAnswerBtn) {
+        if (userWasRight) {
+            clickedAnswerBtn.setBackgroundResource(R.color.rightAnswerButton);
         } else {
-            currExam = wordExamQueue.poll();
-            displayExam(currExam);
+            clickedAnswerBtn.setBackgroundResource(R.color.wrongAnswerButton);
         }
 
+        return clickedAnswerBtn;
     }
 
     public void start() {
