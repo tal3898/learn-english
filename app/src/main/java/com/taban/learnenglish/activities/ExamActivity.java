@@ -1,6 +1,7 @@
 package com.taban.learnenglish.activities;
 
 import android.annotation.SuppressLint;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class ExamActivity extends AppCompatActivity {
     Queue<WordExam> wordExamQueue;
     Queue<WordExam> mistakenExams;
     WordExam currExam;
+    Handler handler;
 
     TextView wordToExamTxt;
     Button option1Btn;
@@ -47,6 +49,8 @@ public class ExamActivity extends AppCompatActivity {
         option2Btn = findViewById(R.id.ExamOption2Btn);
         option3Btn = findViewById(R.id.ExamOption3Btn);
         option4Btn = findViewById(R.id.ExamOption4Btn);
+
+        handler = new Handler();
 
         // Get the words to exam the user
         wordsToExam= (List<Word>) getIntent().getSerializableExtra("wordsToExam");
@@ -72,7 +76,9 @@ public class ExamActivity extends AppCompatActivity {
             Globals.wordsAudioManager.getWordMediaPlayer("off").start();
         }
 
-        displayRightAnswer(userWasRight, clickedBtn).postDelayed(new Runnable() {
+        displayRightAnswer(userWasRight, clickedBtn);
+
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 clickedBtn.setBackgroundResource(R.color.notAnsweredYetButton);
@@ -101,14 +107,12 @@ public class ExamActivity extends AppCompatActivity {
     }
 
 
-    public Button displayRightAnswer(boolean userWasRight, Button clickedAnswerBtn) {
+    public void displayRightAnswer(boolean userWasRight, Button clickedAnswerBtn) {
         if (userWasRight) {
             clickedAnswerBtn.setBackgroundResource(R.color.rightAnswerButton);
         } else {
             clickedAnswerBtn.setBackgroundResource(R.color.wrongAnswerButton);
         }
-
-        return clickedAnswerBtn;
     }
 
     public void start() {
