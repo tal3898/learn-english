@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 public class ExamActivity extends AppCompatActivity {
 
     private static final int TIME_TO_SHOW_ANSWER = 2000;
+    private static final int TIME_ANSWERS_ARE_HIDDEN = 1000;
 
     WordsManager wordsManager;
     List<Word> wordsToExam;
@@ -105,36 +106,34 @@ public class ExamActivity extends AppCompatActivity {
         option3Btn.setVisibility(View.INVISIBLE);
         option4Btn.setVisibility(View.INVISIBLE);
 
-        int timeLongHidden = 1000;
-
         // Wait 2 seconds
         option1Btn.postDelayed(new Runnable() {
             @Override
             public void run() {
                 option1Btn.setVisibility(View.VISIBLE);
             }
-        }, timeLongHidden);
+        }, TIME_ANSWERS_ARE_HIDDEN);
 
         option2Btn.postDelayed(new Runnable() {
             @Override
             public void run() {
                 option2Btn.setVisibility(View.VISIBLE);
             }
-        }, timeLongHidden);
+        }, TIME_ANSWERS_ARE_HIDDEN);
 
         option3Btn.postDelayed(new Runnable() {
             @Override
             public void run() {
                 option3Btn.setVisibility(View.VISIBLE);
             }
-        }, timeLongHidden);
+        }, TIME_ANSWERS_ARE_HIDDEN);
 
         option4Btn.postDelayed(new Runnable() {
             @Override
             public void run() {
                 option4Btn.setVisibility(View.VISIBLE);
             }
-        }, timeLongHidden);
+        }, TIME_ANSWERS_ARE_HIDDEN);
 
         option1Btn.setText(exam.getOptions().get(0));
         option2Btn.setText(exam.getOptions().get(1));
