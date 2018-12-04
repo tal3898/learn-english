@@ -27,8 +27,13 @@ public class WordsAudioManager {
         if (!wordsAudioFiles.containsKey(word)) {
             int resId = LearnEnglishApplication.getAppContext().getResources().getIdentifier(
                     word, "raw", LearnEnglishApplication.getAppContext().getPackageName());
-            MediaPlayer mediaPlayer = MediaPlayer.create(LearnEnglishApplication.getAppContext(), resId);
-            wordsAudioFiles.put(word, mediaPlayer);
+
+            if (resId != 0) {
+                MediaPlayer mediaPlayer = MediaPlayer.create(LearnEnglishApplication.getAppContext(), resId);
+                wordsAudioFiles.put(word, mediaPlayer);
+            } else {
+                wordsAudioFiles.put(word, null);
+            }
         }
 
         return wordsAudioFiles.get(word);

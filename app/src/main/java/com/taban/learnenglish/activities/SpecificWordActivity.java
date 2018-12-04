@@ -1,5 +1,6 @@
 package com.taban.learnenglish.activities;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -45,7 +46,10 @@ public class SpecificWordActivity extends AppCompatActivity {
     }
 
     public void playWord(View view) {
-        Globals.wordsAudioManager.getWordMediaPlayer(word).start();
+        MediaPlayer wordMedia = Globals.wordsAudioManager.getWordMediaPlayer(word);
+        if (wordMedia != null) {
+            wordMedia.start();
+        }
     }
 
 }
