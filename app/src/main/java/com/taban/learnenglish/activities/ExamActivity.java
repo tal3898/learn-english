@@ -1,8 +1,11 @@
 package com.taban.learnenglish.activities;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -195,6 +198,7 @@ public class ExamActivity extends AppCompatActivity {
                     } else {
                         // Finished the test
                         // TODO: add handle
+                        onTestEnds();
                         Log.i("TAL", "FINISHHH");
                     }
                 } else {
@@ -205,6 +209,23 @@ public class ExamActivity extends AppCompatActivity {
         }, TIME_TO_SHOW_ANSWER);
 
 
+    }
+
+    public void onTestEnds() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ExamActivity.this);
+        alertBuilder.setTitle("Congratulations!");
+        alertBuilder.setMessage("You finished successfully the test, keep practice and getting better.");
+        alertBuilder.setCancelable(false);
+        alertBuilder.setPositiveButton("Cool", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent mainActivityIntent = new Intent(LearnEnglishApplication.getAppContext(), MainActivity.class);
+                startActivity(mainActivityIntent);
+            }
+        });
+
+        AlertDialog alertDialog = alertBuilder.create();
+        alertBuilder.show();
     }
 
     /**

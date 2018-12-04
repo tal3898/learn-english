@@ -51,27 +51,27 @@ public class WordsManager {
         }
 
         this.wordsNotMemorizedYet.put(Difficulty.BEGINNER,  new ArrayList<Word>(Arrays.asList(new Word("obstruction", "a", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("protest", "b", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("controversial", "c", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("preface", "d", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("appetite", "e", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("mansion", "f", new ArrayList<String>(), null, Difficulty.BEGINNER)
+                new Word("protest", "מחאה", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("controversial", "שנוי במחלוקת", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("preface", "הקדמה", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("appetite", "תאבון", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("mansion", "אחוזה", new ArrayList<String>(), null, Difficulty.BEGINNER)
         )));
 
         this.wordsNotMemorizedYet.put(Difficulty.NORMAL, new ArrayList<Word>(Arrays.asList(new Word("captain", "a", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("integrity", "b", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("aggression", "c", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("forget", "d", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("calculate", "e", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("scold", "f", new ArrayList<String>(), null, Difficulty.BEGINNER)
+                new Word("integrity", "יושרה", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("aggression", "תוקפנות", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("forget", "לשכוח", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("calculate", "לחשב", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("scold", "לנזוף", new ArrayList<String>(), null, Difficulty.BEGINNER)
         )));
 
         this.wordsNotMemorizedYet.put(Difficulty.EXPERT, new ArrayList<Word>(Arrays.asList(new Word("tickle", "a", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("thanks to", "b", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("recycle", "c", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("inwards", "d", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("pride", "e", new ArrayList<String>(), null, Difficulty.BEGINNER),
-                new Word("sway", "f", new ArrayList<String>(), null, Difficulty.BEGINNER)
+                new Word("thanks to", "בזכות", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("recycle", "למחזר", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("inwards", "כלפי פנים", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("pride", "גאווה", new ArrayList<String>(), null, Difficulty.BEGINNER),
+                new Word("sway", "להתנדנד", new ArrayList<String>(), null, Difficulty.BEGINNER)
         )));
     }
 
@@ -135,11 +135,11 @@ public class WordsManager {
         examples.add("first example for this word");
         examples.add("first example for this word");
         examples.add("first example for this word");
-        this.newWordsToMemorize.add(new Word("collaborate", "כלב", examples, null, Difficulty.BEGINNER));
-        this.newWordsToMemorize.add(new Word("desirable", "חתול", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.newWordsToMemorize.add(new Word("evacuation", "אמא", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.newWordsToMemorize.add(new Word("expectation", "אבא", new ArrayList<String>(), null, Difficulty.BEGINNER));
-        this.newWordsToMemorize.add(new Word("interference", "אח", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("collaborate", "לשתף פעולה", examples, null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("desirable", "רצוי", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("evacuation", "פינוי", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("expectation", "ציפייה", new ArrayList<String>(), null, Difficulty.BEGINNER));
+        this.newWordsToMemorize.add(new Word("interference", "הפרעה", new ArrayList<String>(), null, Difficulty.BEGINNER));
     }
 
     // Access Methods
