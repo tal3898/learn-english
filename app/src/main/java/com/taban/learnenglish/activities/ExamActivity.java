@@ -1,6 +1,7 @@
 package com.taban.learnenglish.activities;
 
 import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import com.taban.learnenglish.R;
 import com.taban.learnenglish.models.Word;
 import com.taban.learnenglish.models.WordExam;
 import com.taban.learnenglish.utilities.Globals;
+import com.taban.learnenglish.utilities.WordsAudioManager;
 import com.taban.learnenglish.utilities.WordsManager;
 
 import java.util.ArrayList;
@@ -29,6 +31,8 @@ public class ExamActivity extends AppCompatActivity {
     private static final int TIME_ANSWERS_ARE_HIDDEN = 1000;
 
     WordsManager wordsManager;
+    WordsAudioManager wordsAudioManager;
+
     List<Word> wordsToExam;
     Queue<WordExam> wordExamQueue;
     Queue<WordExam> mistakenExams;
@@ -46,6 +50,8 @@ public class ExamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
+
+        wordsAudioManager = new WordsAudioManager();
 
         allOptionsButtons = new ArrayList<>();
         wordToExamTxt = findViewById(R.id.TestedWordTxt);
@@ -103,6 +109,11 @@ public class ExamActivity extends AppCompatActivity {
     public void displayExam(WordExam exam) {
 
         wordToExamTxt.setText(exam.getWordToExam().getWord());
+
+        MediaPlayer wordMediaPlayer = wordsAudioManager.getWordMediaPlayer(exam.getWordToExam());
+        if (wordMediaPlayer != null) {
+            wordMediaPlayer.start();
+        }
 
         option1Btn.setVisibility(View.INVISIBLE);
         option2Btn.setVisibility(View.INVISIBLE);
