@@ -16,6 +16,7 @@ import com.taban.learnenglish.utilities.Globals;
 import com.taban.learnenglish.utilities.WordsManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -247,6 +248,8 @@ public class ExamActivity extends AppCompatActivity {
             wordOptions.add(randomWordDefinition);
             copyWordsToTest.remove(randomWordIndex);
         }
+
+        Collections.shuffle(wordOptions);
 
         return wordOptions;
     }
