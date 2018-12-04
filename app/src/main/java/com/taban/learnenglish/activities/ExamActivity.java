@@ -76,12 +76,14 @@ public class ExamActivity extends AppCompatActivity {
      * @return a queue with all the exams (exam for each word)
      */
     public Queue<WordExam> generateAllWordsExam(List<Word> wordsToTest) {
-        Queue<WordExam> exams = new LinkedList<>();
+        LinkedList<WordExam> exams = new LinkedList<>();
         for(Word curWord : wordsToTest) {
             List<String> curWordExamOptions = getWordOptions(curWord, wordsToTest, 4);
             WordExam curWordExam = new WordExam(curWord, curWordExamOptions);
             exams.add(curWordExam);
         }
+
+        Collections.shuffle(exams);
 
         return exams;
     }

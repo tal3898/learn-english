@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         // Send to the activity the words for the exam - The words the user has memorized +
         // the words he memorizes now
         List<Word> wordsForTheExam= new ArrayList<>(wordsManager.getNewWordsToMemorize());
-        wordsForTheExam.addAll(wordsManager.getMemorizedWords());
+        //wordsForTheExam.addAll(wordsManager.getMemorizedWords());
         examActivityIntent.putExtra("wordsToExam", (Serializable) wordsForTheExam);
 
 
